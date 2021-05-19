@@ -1,4 +1,5 @@
 const postcssUniqueImports = require('@mamba/configs/postcss/includes/uniqueImports.js');
+const colorsMamba = require('@mamba/styles/colors.js');
 
 module.exports = {
   plugins: [
@@ -6,7 +7,9 @@ module.exports = {
     postcssUniqueImports.plugin(['@mamba/styles/theme.pcss']),
     require('postcss-easy-import'),
     require('postcss-extend-rule'),
-    require('postcss-advanced-variables'),
+    require('postcss-advanced-variables')({
+      variables: colorsMamba,
+    }),
     require('postcss-preset-env')({
       stage: 0,
       features: {
