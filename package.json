@@ -84,7 +84,7 @@
     "express": "^4.16.3",
     "globby": "^8.0.1",
     "golden-fleece": "^1.0.9",
-    "immer": "^8.0.1",
+    "immer": "^9.0.6",
     "jsbarcode": "^3.11.0",
     "locate-character": "^2.0.5",
     "lodash-fp": "^0.10.4",
