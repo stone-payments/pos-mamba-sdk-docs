@@ -34,7 +34,7 @@ const server = merge([
     target: 'node',
     externals: new RegExp(
       `^${Object.keys(pkg.dependencies)
-        .filter(d => d !== 'svelte')
+        .filter((d) => d !== 'svelte')
         .join('|')}`,
     ),
     performance: {
