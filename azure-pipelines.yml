@@ -75,7 +75,6 @@ stages:
             inputs:
               buildType: 'current'
               buildVersionToDownload: 'latest'
-              downloadType: 'single'
               artifactName: 'ZIP'
               path: '$(Build.ArtifactStagingDirectory)'
 
@@ -95,7 +94,7 @@ stages:
               #releaseNotesFile: # Optional
               #releaseNotes: # Optional
               assets: '$(Build.ArtifactStagingDirectory)/$(package-name)_v$(tag).zip' # Optional
-              #assetUploadMode: 'delete' # Optional. Options: delete, replace
+              assetUploadMode: 'replace' # Optional. Options: delete, replace
               #isDraft: false # Optional
               #isPreRelease: false # Optional
               #addChangeLog: true # Optional
