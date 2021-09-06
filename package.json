@@ -1,7 +1,7 @@
 {
   "name": "@mamba/docs",
   "description": "Docs and examples for Mamba Web",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "author": "Stone Payments - Mamba Team",
   "license": "Apache-2.0",
   "homepage": "https://mambasdk-docs.stone.com.br",
@@ -14,7 +14,7 @@
     "dev:debug": "rm -rf __sapper__/ && node --inspect-brk node_modules/sapper/dist/cli.js dev NODE_ENV=development",
     "build:dev": "cross-env NODE_ENV=development sapper build",
     "build": "cross-env NODE_ENV=production sapper build",
-    "prepare:bundle": "rm -rf dist && rsync -arv package.json package-lock.json __sapper__ dist && cd dist && sed -i.bak 's#file:mamba-sdk#file:..\/mamba-sdk#g' package.json && rm *.bak && npm i --production --ignore-scripts",
+    "prepare:bundle": "rm -rf dist && rsync -arv static package.json package-lock.json __sapper__ dist && cd dist && sed -i.bak 's#file:mamba-sdk#file:../mamba-sdk#g' package.json && rm *.bak && npm i --production --ignore-scripts",
     "export": "sapper export",
     "start": "node __sapper__/build",
     "preinstall": "npm run pull:sdk:submodule",
