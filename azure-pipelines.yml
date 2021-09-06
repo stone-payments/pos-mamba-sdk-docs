@@ -45,8 +45,7 @@ stages:
             displayName: 'npm install and build'
           - task: ArchiveFiles@2
             inputs:
-              #rootFolderOrFile: '$(Build.BinariesDirectory)'
-              rootFolderOrFile: '$(Build.SourcesDirectory)/__sapper__/build'
+              rootFolderOrFile: '$(Build.SourcesDirectory)/dist'
               includeRootFolder: false
               archiveType: 'zip'
               archiveFile: '$(Build.ArtifactStagingDirectory)/$(package-name)_v$(tag).zip'
