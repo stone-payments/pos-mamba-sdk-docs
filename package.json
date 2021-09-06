@@ -59,6 +59,7 @@
     "@mamba/collection": "file:./mamba-sdk/packages/components/Collection",
     "@mamba/container": "file:./mamba-sdk/packages/components/Container",
     "@mamba/dialog": "file:./mamba-sdk/packages/components/Dialog",
+    "@mamba/flatlist": "file:mamba-sdk/packages/components/Flatlist",
     "@mamba/icon": "file:./mamba-sdk/packages/components/Icon",
     "@mamba/input": "file:./mamba-sdk/packages/components/Input",
     "@mamba/pos": "file:./mamba-sdk/packages/pos",
