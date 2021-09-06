@@ -42,6 +42,7 @@ stages:
           - script: |
               npm install
               npm run build
+              npm run prepare:bundle
             displayName: 'npm install and build'
           - task: ArchiveFiles@2
             inputs:
