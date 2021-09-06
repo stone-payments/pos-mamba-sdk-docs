@@ -168,8 +168,8 @@
     "svelte-preprocess": "^2.5.0",
     "svg-url-loader": "^2.3.2",
     "url-loader": "^1.1.1",
-    "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.0",
+    "webpack": "^4.29.4",
+    "webpack-cli": "^3.2.3",
     "webpack-merge": "^4.1.4",
     "workerize-loader": "^1.0.4"
   }
