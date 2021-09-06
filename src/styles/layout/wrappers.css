@@ -16,6 +16,7 @@
   header ~ section {
     padding-left: var(--content-pad-left);
     padding-right: var(--content-pad-right);
+    padding-top: 42px;
   }
 
   @media screen and (min-width: 80rem) {
