@@ -5,6 +5,7 @@
 ```
 git clone https://github.com/stone-payments/pos-mamba-sdk-docs.git
 cd pos-mamba-sdk-docs
+git submodule update --init --recursive --force
 npm i # Install dependencies 
 npm run dev # Run development
 ```
