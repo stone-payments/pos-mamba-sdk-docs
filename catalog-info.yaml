@@ -19,9 +19,7 @@ spec:
   # infraestructure: UNKNOWN
   lastDeployDate: '2021-10-13T18:58:20.243Z'
   lifecycle: production
-  monitoring:
-    owner: none
-    platform: none
+  monitoring: none
   operationalDate: '2021-10-13T18:45:23.503Z'
   owner:
     - jcmarques@stone.com.br
