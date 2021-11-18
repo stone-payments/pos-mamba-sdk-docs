@@ -3,34 +3,36 @@ kind: Component
 manifestVersion: 0.1.1
 metadata:
   compliance:
-    gui: UNKNOWN
-    pci: UNKNOWN
-    processPersonalData: UNKNOWN
-    sox: UNKNOWN
-  description: UNKNOWN
+    gui: true
+    pci: none
+    processPersonalData: false
+    sox: none
+  description: O Mamba SDK Docs é uma aplicação responsável por disponibilizar para os usuários do Mamba SDK, a documentação completa de todos os recursos disponibilizados pelo mesmo em forma de documentação e exemplos práticos.
   labels:
-    lifecycle: UNKNOWN
+    lifecycle: production
   name: Mambasdk-Docs
   namespace: pos-mamba-sdk-docs
   tags:
     - JavaScript
 spec:
-  database: UNKNOWN
-  infraestructure: UNKNOWN
+  database: none
+  # infraestructure: UNKNOWN
   lastDeployDate: '2021-10-13T18:58:20.243Z'
-  lifecycle: UNKNOWN
+  lifecycle: production
   monitoring:
-    owner: UNKNOWN
-    platform: UNKNOWN
+    owner: none
+    platform: none
   operationalDate: '2021-10-13T18:45:23.503Z'
   owner:
     - jcmarques@stone.com.br
     - diego.martins@stone.com.br
     - jonas.bezerra@stone.com.br
     - yago.goncalves@stone.com.br
+    - lucas.mandrade@stone.com.br
+    - alessandro.perez@stone.com.br
   pipeline:
     pipeline: Mambasdk-Docs
     project: Tribo Meios de Pagamento
     url: https://dev.azure.com/stonepagamentos/ded1348c-0dc6-4b16-8295-4e909bd6bbc7/_release?releaseId=2987&_a=release-summary
-  replacing_application: UNKNOWN
-  type: UNKNOWN
+  replacing_application: none
+  type: website
