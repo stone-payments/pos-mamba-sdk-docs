@@ -24,4 +24,4 @@ jobs:
       - name: Node version
         run: node --version
       - name: Build app
-        run: npm run build
+        run: ls -a
