@@ -1,0 +1,25 @@
+name: Publish into github pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  setup-node:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.0
+        with:
+          # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
+          node-version: 10.x
+  build:
+    needs: setup-node
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build app
+        run: npm --version
+      - name: Node version
+        run: node --version
