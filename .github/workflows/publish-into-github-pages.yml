@@ -11,12 +11,17 @@ jobs:
 
     steps:
       - name: Setup Node.js environment
-        run: apt install nodejs npm
+        uses: actions/setup-node@v2.5.0
+        with:
+          # Version Spec of the version to use. Examples: 12.x, 10.15.1, >=10.15.0
+          node-version: 10.x
   build:
     needs: setup-node
     runs-on: ubuntu-latest
     steps:
-      - name: Build app
+      - name: Npm version
         run: npm --version
       - name: Node version
         run: node --version
+      - name: Build app
+        run: npm run build
