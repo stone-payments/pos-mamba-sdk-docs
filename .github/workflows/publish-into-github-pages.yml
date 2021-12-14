@@ -4,9 +4,9 @@ name: Deploy Application
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 10.x ] # We will deploy with only one version of node
+        node-version: [10.x] # We will deploy with only one version of node
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -35,6 +35,7 @@ jobs:
           SRC_FOLDER_PATH: 'dist'
           TARGET_BRANCH: 'gh-pages'
         run: |
+          ls -a
           files=$(find $SRC_FOLDER_PATH -type f) # get the file list
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
@@ -42,5 +43,5 @@ jobs:
           git checkout $TARGET_BRANCH       # checkout to your branch
           git checkout ${GITHUB_REF##*/} -- $files # copy files from the source branch
           git add -A
-          git diff-index --quiet HEAD ||  git commit -am "deploy files"  # commit to the repository (ignore if no modification)
+          git diff-index --quiet HEAD || git commit -am "deploy files"  # commit to the repository (ignore if no modification)
           git push origin $TARGET_BRANCH # push to remote branch
