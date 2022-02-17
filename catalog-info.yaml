@@ -1,36 +1,7 @@
-apiVersion: backstage.io/v1alpha1
-kind: Component
-manifestVersion: 0.1.1
-metadata:
-  compliance:
-    gui: true
-    pci: none
-    processPersonalData: false
-    sox: none
-  description: O Mamba SDK Docs é uma aplicação responsável por disponibilizar para os usuários do Mamba SDK, a documentação completa de todos os recursos disponibilizados pelo mesmo em forma de documentação e exemplos práticos.
-  labels:
-    lifecycle: production
-  name: Mambasdk-Docs
-  namespace: pos-mamba-sdk-docs
-  tags:
-    - JavaScript
-spec:
-  database: none
-  # infraestructure: UNKNOWN
-  lastDeployDate: '2021-10-13T18:58:20.243Z'
-  lifecycle: production
-  monitoring: none
-  operationalDate: '2021-10-13T18:45:23.503Z'
-  owner:
-    - jcmarques@stone.com.br
-    - diego.martins@stone.com.br
-    - jonas.bezerra@stone.com.br
-    - yago.goncalves@stone.com.br
-    - lucas.mandrade@stone.com.br
-    - alessandro.perez@stone.com.br
-  pipeline:
-    pipeline: Mambasdk-Docs
-    project: Tribo Meios de Pagamento
-    url: https://dev.azure.com/stonepagamentos/ded1348c-0dc6-4b16-8295-4e909bd6bbc7/_release?releaseId=2987&_a=release-summary
-  replacing_application: none
-  type: website
+"\n# Fala time, tudo certo?\n# \n# Este PR está sendo aberto referente ao mapping\
+  \ sistêmico, a abaixo temos de links pré-preenchidos com as informações referentes\n\
+  # a cada aplicação deste repositório. Para preencher o mapping de cada uma destas\
+  \ aplicações, basta clicar no link e preencher os \n# campos corretamente.\n# \n\
+  # Documentação: https://bit.ly/RM_doc\n# \n# Links das aplicações:\n\n# - Mambasdk-Docs:https://docs.google.com/forms/d/e/1FAIpQLSehIKbXmyzdUkkgJMf0YWFbE4Ra5eKTawjF9Tkv3kTAVTtLYg/viewform?usp=pp_url&entry.1179021386=stone-payments%2Fpos-mamba-sdk-docs&entry.6101779=AlessandroRodrigo&entry.186247319=Mambasdk-Docs&entry.864118981=None&entry.1601092960=None&entry.1932387773=None&entry.1882998249=Mambasdk-Docs&entry.463122150=https%3A%2F%2Fdev.azure.com%2Fstonepagamentos%2Fded1348c-0dc6-4b16-8295-4e909bd6bbc7%2F_release%3FdefinitionId%3D64&entry.42532283=None\
+  \ \n\n# - stone-payments.pos-mamba-sdk-docs:https://docs.google.com/forms/d/e/1FAIpQLSehIKbXmyzdUkkgJMf0YWFbE4Ra5eKTawjF9Tkv3kTAVTtLYg/viewform?usp=pp_url&entry.1179021386=stone-payments%2Fpos-mamba-sdk-docs&entry.6101779=AlessandroRodrigo&entry.186247319=stone-payments.pos-mamba-sdk-docs&entry.864118981=None&entry.1601092960=None&entry.1932387773=None&entry.1882998249=stone-payments.pos-mamba-sdk-docs&entry.463122150=https%3A%2F%2Fstonepagamentos.visualstudio.com%2Fded1348c-0dc6-4b16-8295-4e909bd6bbc7%2F_build%2Fdefinition%3FdefinitionId%3D3126&entry.42532283=None\
+  \ \n"
