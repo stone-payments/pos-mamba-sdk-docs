@@ -1,7 +1,7 @@
 {
   "name": "@mamba/docs",
   "description": "Docs and examples for Mamba Web",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "author": "Stone Payments - Mamba Team",
   "license": "Apache-2.0",
   "homepage": "https://mambasdk-docs.stone.com.br",
@@ -14,7 +14,7 @@
     "dev:debug": "rm -rf __sapper__/ && node --inspect-brk node_modules/sapper/dist/cli.js dev NODE_ENV=development",
     "build:dev": "cross-env NODE_ENV=development sapper build",
     "build": "cross-env NODE_ENV=production sapper build",
-    "prepare:bundle": "rm -rf dist && rsync -arv package.json package-lock.json __sapper__ dist && cd dist && sed -i.bak 's#file:mamba-sdk#file:..\/mamba-sdk#g' package.json && rm *.bak && npm i --production --ignore-scripts",
+    "prepare:bundle": "rm -rf dist && rsync -arv static package.json package-lock.json __sapper__ dist && cd dist && sed -i.bak 's#file:mamba-sdk#file:../mamba-sdk#g' package.json && rm *.bak && npm i --production --ignore-scripts",
     "export": "sapper export",
     "start": "node __sapper__/build",
     "preinstall": "npm run pull:sdk:submodule",
@@ -79,6 +79,8 @@
     "compression": "^1.7.3",
     "core-js": "^3.1.3",
     "cross-env": "^5.2.1",
+    "date-fns": "^2.5.1",
+    "date-fns-tz": "^1.0.8",
     "do-not-zip": "^0.1.1",
     "dotenv": "^6.0.0",
     "dropzone": "^5.5.1",
@@ -168,8 +170,8 @@
     "svelte-preprocess": "^2.5.0",
     "svg-url-loader": "^2.3.2",
     "url-loader": "^1.1.1",
-    "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.0",
+    "webpack": "^4.29.4",
+    "webpack-cli": "^3.2.3",
     "webpack-merge": "^4.1.4",
     "workerize-loader": "^1.0.4"
   }
