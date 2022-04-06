@@ -11,6 +11,10 @@ const certs = {
     : path.join(process.cwd(), 'localhost.cert'),
 }
 
+if (__DEV__) {
+  console.log('-----> certs', certs)
+}
+
 if (process.env.HTTPS_CA_PATH_LIST) {
   try {
     certs.ca = String(process.env.HTTPS_CA_PATH_LIST)
