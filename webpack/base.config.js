@@ -1,9 +1,9 @@
-const webpack = require('webpack')
-const path = require('path')
-const loaders = require('./helpers/loaders')
-const { fromWorkspace, fromProject } = require('./helpers/paths')
-const pkg = require('../package.json')
-const mode = process.env.NODE_ENV
+const webpack = require('webpack');
+const path = require('path');
+const loaders = require('./helpers/loaders');
+const { fromWorkspace, fromProject } = require('./helpers/paths');
+const pkg = require('../package.json');
+const mode = process.env.NODE_ENV;
 
 const {
   BUNDLE_NAME,
@@ -14,7 +14,7 @@ const {
   IS_PROD,
   NODE_ENV,
   APP_ENV,
-} = require('@mamba/webpack/helpers/consts.js')
+} = require('@mamba/webpack/helpers/consts.js');
 
 module.exports = function createWebpackConfig(type) {
   return {
@@ -25,46 +25,134 @@ module.exports = function createWebpackConfig(type) {
       symlinks: false,
       mainFields: ['svelte', 'browser', 'module', 'main', 'dist'],
       extensions: ['.js', '.json', '.css', '.pcss', '.html'],
-      modules: [
-        path.resolve(__dirname, '../mamba-sdk/packages'),
-        path.resolve(__dirname, '../mamba-sdk/packages/components/Icon'),
-        path.resolve(__dirname, '../mamba-sdk/packages/styles/src/assets/fonts'),
-        path.resolve(__dirname, '../node_modules'),
-        path.resolve(__dirname, '../node_modules/svelte'),
-        'node_modules',
-      ],
+      // modules: [
+      //   path.resolve(
+      //     __dirname,
+      //     '../mamba-sdk/packages/styles/src/assets/fonts',
+      //   ),
+      // ],
       alias: {
-        'svelte': path.resolve(__dirname, '../node_modules/svelte'),
-        '@components': path.resolve(__dirname, '../mamba-sdk/packages/components/'),
-        '@mamba/pos': path.resolve(__dirname, '../mamba-sdk/packages/pos/'),
-        './assets/fonts/': path.resolve(__dirname, '../mamba-sdk/packages/styles/src/assets/fonts/'),
-        '@mamba/icon': path.resolve(__dirname, '../mamba-sdk/packages/components/Icon'),
-        '@mamba/utils': path.resolve(__dirname, '../mamba-sdk/packages/utils'),
-        '@mamba/store': path.resolve(
+        '@components': path.resolve(
           __dirname,
-          '../mamba-sdk/packages/store/src/index.js',
+          '../mamba-sdk/packages/components/',
+        ),
+        '@mamba/app': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/App',
+        ),
+        '@mamba/appbar': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/AppBar',
+        ),
+        '@mamba/barcode': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Barcode',
+        ),
+        '@mamba/brands': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Brands',
+        ),
+        '@mamba/button': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Button',
+        ),
+        '@mamba/carousel': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Carousel',
+        ),
+        '@mamba/collection': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Collection',
+        ),
+        '@mamba/container': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Container',
+        ),
+        '@mamba/dialog': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Dialog',
+        ),
+        '@mamba/flatlist': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Flatlist',
+        ),
+        '@mamba/icon': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Icon',
+        ),
+        '@mamba/input': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Input',
+        ),
+        '@mamba/printable': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Printable',
+        ),
+        '@mamba/progress': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Progress',
+        ),
+        '@mamba/qrcode': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/QRCode',
+        ),
+        '@mamba/radio': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Radio',
+        ),
+        '@mamba/range': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Range',
+        ),
+        '@mamba/sprite': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Sprite',
+        ),
+        '@mamba/switch': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Switch',
+        ),
+        '@mamba/tabs': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Tabs',
+        ),
+        '@mamba/toast': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/components/Toast',
+        ),
+        '@mamba/styles': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/styles',
+        ),
+        '@mamba/pos': path.resolve(__dirname, '../mamba-sdk/packages/pos'),
+        '@mamba/utils': path.resolve(__dirname, '../mamba-sdk/packages/utils'),
+        './assets/fonts/': path.resolve(
+          __dirname,
+          '../mamba-sdk/packages/styles/src/assets/fonts/',
         ),
       },
     },
-    node: {
+    /* node: {
       __dirname: false,
-    },
+    }, */
     module: {
       rules: [
         {
           test: /NAV_COMPONENTS$/,
+          exclude: [/node_modules/],
           loader: require.resolve('./navigation-loader'),
           options: {
-            localPath: path.join(__dirname, '..', 'mamba-sdk/packages/components'),
+            localPath: path.join(
+              __dirname,
+              '..',
+              'mamba-sdk/packages/components',
+            ),
           },
         },
         {
           test: /\.(html|svelte)$/,
-          include: [
-            /node_modules\/@mamba/,
-            /mamba-sdk\/packages\/.+\/src/,
-            path.resolve(__dirname, '..'),
-          ],
+          exclude: [/node_modules/],
+          // include: [/mamba-sdk\/packages\/.+\/src/],
           use: [loaders.babel, loaders.svelte(type)],
         },
         {
@@ -76,12 +164,14 @@ module.exports = function createWebpackConfig(type) {
         {
           test: /\.(css|pcss)$/,
           resolve: { mainFields: ['style', 'main'] },
-          include: [
-            path.resolve(__dirname, '../src'),
-            path.resolve(__dirname, '../mamba-sdk/packages'),
-            path.resolve(__dirname, '../node_modules/@mamba'),
+          // include: [/mamba-sdk\/packages\/.+\/src/],
+          exclude: [/node_modules/],
+          use: [
+            loaders.styleLoader,
+            loaders.css,
+            loaders.postcss,
+            loaders.resolveUrl,
           ],
-          use: [loaders.styleLoader, loaders.css, loaders.postcss, loaders.resolveUrl],
         },
         {
           test: /\.(eot|woff2?|otf|ttf)$/,
@@ -90,12 +180,7 @@ module.exports = function createWebpackConfig(type) {
         },
         {
           test: /\.(gif|jpe?g|png|ico)$/,
-          include: [
-            /packages\/mamba-sdk\/pos/,
-            /assets/,
-            /\/assets\/images\//,
-            /\/example\/static\//,
-          ],
+          include: [/assets/, /\/assets\/images\//, /\/example\/static\//],
           use: loaders.images,
         },
         {
@@ -127,5 +212,9 @@ module.exports = function createWebpackConfig(type) {
       }),
     ],
     mode,
-  }
-}
+    optimization: {
+      namedChunks: true,
+      namedModules: true,
+    },
+  };
+};
