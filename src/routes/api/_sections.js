@@ -8,11 +8,25 @@ import cheerio from 'cheerio'
 import marked from 'marked'
 import Prism from 'prismjs'
 import loadLanguages from 'prismjs/components/index.js'
-import 'prism-svelte';
+import '../../lib/svelte-prism.js'
 
-loadLanguages(['javascript', 'jsx', 'css', 'typescript', 'markup', 'bash', 'json']);
+loadLanguages([
+  'javascript',
+  'jsx',
+  'css',
+  'typescript',
+  'markup',
+  'bash',
+  'json',
+])
 
-import { unescape, insertTag, replaceTag, createBuffer, slugify } from './_utils'
+import {
+  unescape,
+  insertTag,
+  replaceTag,
+  createBuffer,
+  slugify,
+} from './_utils'
 import processMarkdown from './_processMarkdown'
 import classNameUtils from './_classNameUtils'
 import strings from './_strings'
@@ -60,7 +74,7 @@ export const demos = new Map()
     toFile: Boolean
   }
 */
-export default function(path, options = {}) {
+export default function (path, options = {}) {
   let read = [path]
 
   if (!options.toFile) {
@@ -70,14 +84,14 @@ export default function(path, options = {}) {
       return null
     }
 
-    read = read.filter(file => file[0] !== '.' && extname(file) === '.md')
+    read = read.filter((file) => file[0] !== '.' && extname(file) === '.md')
   }
 
-  return read.map(file => {
+  return read.map((file) => {
     const sectionSlug = file.replace(/^\d+-/, '').replace(/\.md$/, '')
     const filePath = (options.toFile ? '' : `${path}/`).concat(file)
 
-    const markdown = fs.readFileSync(filePath, 'utf-8');
+    const markdown = fs.readFileSync(filePath, 'utf-8')
 
     const { content, metadata } = processMarkdown(
       markdown,
@@ -88,53 +102,55 @@ export default function(path, options = {}) {
     let group = null
     let uid = 1
 
-    const renderer = new marked.Renderer();
+    const renderer = new marked.Renderer()
 
     renderer.code = (code, lang) => {
-      const properLanguage = (lang === 'js' ? 'javascript' : lang) || 'javascript';
-      let source = code;
+      const properLanguage =
+        (lang === 'js' ? 'javascript' : lang) || 'javascript'
+      let source = code
 
       if (Prism.languages[lang]) {
-        source = Prism.highlight(code, Prism.languages[lang], lang);
+        source = Prism.highlight(code, Prism.languages[lang], lang)
       }
 
-      source = `<pre class="code-block language-${properLanguage}"><code class="language-${properLanguage}">${source}</code></pre>`;
+      source = `<pre class="code-block language-${properLanguage}"><code class="language-${properLanguage}">${source}</code></pre>`
 
-      return `<div class="code-block code-block-container">${source}</div>`;;
+      return `<div class="code-block code-block-container">${source}</div>`
     }
 
     renderer.table = (header, body) => {
-      return `<div class="table-wrapper"><table><thead>${header}</thead><tbody>${body}</tbody></table></div>`;
+      return `<div class="table-wrapper"><table><thead>${header}</thead><tbody>${body}</tbody></table></div>`
     }
 
     // Process markdown with marked
-    let html = marked(content, { renderer });
+    let html = marked(content, { renderer })
 
     // Add anchors to h3
     let match
     let pattern = /<h3 id="(.+?)">(.+?)<\/h3>/g
     while ((match = pattern.exec(html))) {
-      const slug = slugify(match[1]);
+      const slug = slugify(match[1])
       const anchor = match[0].replace(
         match[2],
-        `<span>${match[2]}</span><a href="${options.anchorPath ||
-          ''}#${slug}" class="anchor">#</a>`,
+        `<span>${match[2]}</span><a href="${
+          options.anchorPath || ''
+        }#${slug}" class="anchor">#</a>`,
       )
       html = html.replace(match[0], anchor)
     }
 
     const hashes = {}
 
-    groups.forEach(group => {
+    groups.forEach((group) => {
       const main = group.blocks[0]
       if (main.meta.repl === false) return
 
-      const hash = getHash(group.blocks.map(block => block.source).join(''))
+      const hash = getHash(group.blocks.map((block) => block.source).join(''))
       hashes[group.id] = hash
 
-      const json5 = group.blocks.find(block => block.lang === 'json')
+      const json5 = group.blocks.find((block) => block.lang === 'json')
       // console.log('main, main.meta: ', main, main.meta);
-      const {title} = main.meta
+      const { title } = main.meta
       if (!title) console.error(`Missing title for demo in ${file}`)
 
       demos.set(
@@ -142,8 +158,8 @@ export default function(path, options = {}) {
         JSON.stringify({
           title: title || 'Example from guide',
           components: group.blocks
-            .filter(block => block.lang === 'html' || block.lang === 'js')
-            .map(block => {
+            .filter((block) => block.lang === 'html' || block.lang === 'js')
+            .map((block) => {
               const [name, type] = (block.meta.filename || '').split('.')
               return {
                 name: name || 'App',
@@ -162,8 +178,7 @@ export default function(path, options = {}) {
     match
 
     while ((match = pattern.exec(html))) {
-      const slug = slugify(match[1]);
-
+      const slug = slugify(match[1])
 
       const title = unescape(
         match[2]
