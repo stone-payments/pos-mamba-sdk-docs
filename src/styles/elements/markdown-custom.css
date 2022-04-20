@@ -59,6 +59,7 @@ h3 ~ ul li p ~ p {
 }
 
 h2[id] + ul,
-p + .code-block {
+p + .code-block,
+.code-block + p {
   margin-top: 15px;
 }

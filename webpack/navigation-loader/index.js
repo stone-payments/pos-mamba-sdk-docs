@@ -4,8 +4,8 @@ const fetch = require('node-fetch');
 const loaderUtils = require('loader-utils');
 const globby = require('globby');
 
-const directories = p =>
-  readdirSync(p).filter(f => statSync(join(p, f)).isDirectory());
+const directories = (p) =>
+  readdirSync(p).filter((f) => statSync(join(p, f)).isDirectory());
 
 // The motivation of this loader is to keep components navigations up to date.
 // We call our repository to read folders which are our packages
@@ -20,13 +20,19 @@ function loader(source) {
   );
 
   let packages = [];
-
+  let remap = { Flatlist: 'FlatList' };
   let exclude = [];
 
   packages = directories(opts.localPath).reduce((r, c) => {
     if (!exclude.includes(c)) {
+      const found = remap[c];
+
+      if (found) c = found;
+
+      const title = c.charAt(0).toUpperCase() + c.slice(1);
+
       const componentRoute = {
-        title: c.charAt(0).toUpperCase() + c.slice(1),
+        title,
         to: `/${c.toLowerCase()}`,
       };
 
@@ -34,7 +40,7 @@ function loader(source) {
     }
     return r;
   }, []);
-
+  console.log(packages);
   return `module.exports = ${JSON.stringify(packages)};`;
 }
 
