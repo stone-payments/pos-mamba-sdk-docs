@@ -55,32 +55,32 @@
     {#await examplesPromise}
       <p></p>
     {:then data}
-    <section class="Examples">
       {#if data.examples && data.examples.length > 0}
-        {#each data.examples as { title, path, source, ih }}
-          <div class="Example">
-            <div class="Example-title">{title}</div>
-            <div class="iframe-wrapper" style="max-height: {ih}px;">
-              <iframe title="{data.slug}" src="/framed/{path}?slug={data.package}"></iframe>
-            </div>
-            <div class="Source-wrapper">
-              <div class='Source-wrapper-header'>
-                <a
-                  class='filename'
-                  href='https://github.com/stone-payments/pos-mamba-sdk/blob/master/packages/components/{data.package}/{path}'
-                >
-                  <span>Source</span>
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
+        <section class="Examples">
+          {#each data.examples as { title, path, source, ih }}
+            <div class="Example">
+              <div class="Example-title">{title}</div>
+              <div class="iframe-wrapper" style="max-height: {ih}px;">
+                <iframe title="{data.slug}" src="/framed/{path}?slug={data.package}"></iframe>
               </div>
-              <div class="Source-wrapper-content">
-                {@html source}
+              <div class="Source-wrapper">
+                <div class='Source-wrapper-header'>
+                  <a
+                    class='filename'
+                    href='https://github.com/stone-payments/pos-mamba-sdk/blob/master/packages/components/{data.package}/{path}'
+                  >
+                    <span>Source</span>
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                </div>
+                <div class="Source-wrapper-content">
+                  {@html source}
+                </div>
               </div>
             </div>
-          </div>
-        {/each}
+          {/each}
+        </section>
       {/if}
-    </section>
     {:catch error}
       <p></p>
     {/await}

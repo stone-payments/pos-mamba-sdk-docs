@@ -110,10 +110,11 @@ pre[class*='language-'] {
 
 code {
   font-family: var(--code-font);
-  font-size: 13px;
+  font-size: 12px;
   background-color: #dcdcdc;
   padding: 0.1em 0.4em;
   font-weight: 500;
+  border-radius: 2px;
 }
 
 .token.selector,
