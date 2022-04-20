@@ -14,7 +14,7 @@
     "dev:debug": "rm -rf __sapper__/ && node --inspect-brk node_modules/sapper/dist/cli.js dev NODE_ENV=development",
     "build:dev": "cross-env NODE_ENV=development sapper build",
     "build": "cross-env NODE_ENV=production sapper build",
-    "prepare:bundle": "rm -rf dist && rsync -arv static package.json package-lock.json __sapper__ dist && cd dist && sed -i.bak 's#file:mamba-sdk#file:../mamba-sdk#g' package.json && rm *.bak && npm ci",
+    "prepare:bundle": "rm -rf dist && rsync -arv static package.json package-lock.json __sapper__ content dist && rsync -arcv mamba-sdk/packages dist/mamba-sdk --exclude=webpack --exclude=logger --exclude=cli --exclude=configs && cd dist && sed -i.bak 's#file:mamba-sdk#file:../mamba-sdk#g' package.json && rm *.bak && npm ci --production",
     "export": "sapper export",
     "start": "node __sapper__/build",
     "preinstall": "npm run pull:sdk:submodule",
