@@ -1,5 +1,6 @@
-const { fromProject } = require('./paths');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { fromProject } = require('./paths');
 const IS_DEV = process.env.NODE_ENV === 'development';
 
 /** Read the project's .babelrc.js to enforce it in 'babel-loader' */
@@ -12,7 +13,7 @@ module.exports = {
     loader: 'babel-loader',
     options: {
       sourceMaps: IS_DEV,
-      compact: false,
+      // compact: false,
       cacheDirectory: IS_DEV,
       babelrc: false,
       ...babelrc,
@@ -26,12 +27,13 @@ module.exports = {
    * MiniCssExtractPlugin doesn't support HMR.
    * For developing, use 'style-loader' instead.
    * */
+  extractCss: IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
   styleLoader: 'style-loader',
   css: {
     loader: 'css-loader',
     options: {
       sourceMap: IS_DEV,
-      minimize: !IS_DEV,
+      // minimize: !IS_DEV,
       /** Apply the two last loaders */
       importLoaders: 2,
     },
@@ -89,7 +91,7 @@ module.exports = {
   html: {
     loader: 'html-loader',
   },
-  svelte: type => {
+  svelte: (type) => {
     const [server, client] = ['server', 'client'];
 
     if (type !== client && type !== server) {
