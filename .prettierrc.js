@@ -1,5 +1,5 @@
 module.exports = {
-  printWidth: 80,
+  printWidth: 120,
   semi: true,
   useTabs: false,
   tabWidth: 2,
@@ -7,4 +7,4 @@ module.exports = {
   bracketSpacing: true,
   jsxBracketSameLine: false,
   singleQuote: true,
-}
+};
