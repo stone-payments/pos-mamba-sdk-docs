@@ -43,7 +43,7 @@ module.exports = {
     options: {
       // ident: 'postcss',
       // plugins: [...require('../../postcss.config.js').plugins],
-      sourceMap: true,
+      sourceMap: IS_DEV,
     },
   },
   fonts: {
@@ -91,7 +91,7 @@ module.exports = {
   html: {
     loader: 'html-loader',
   },
-  svelte: (type) => {
+  svelte: type => {
     const [server, client] = ['server', 'client'];
 
     if (type !== client && type !== server) {
