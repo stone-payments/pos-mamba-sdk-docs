@@ -1,5 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const cssProcessor = require('cssnano');
 const loaders = require('./helpers/loaders');
 const { fromWorkspace, fromProject } = require('./helpers/paths');
 const pkg = require('../package.json');
@@ -213,8 +216,48 @@ module.exports = function createWebpackConfig(type) {
     ],
     mode,
     optimization: {
-      namedChunks: true,
-      namedModules: true,
+      minimize: IS_PROD,
+      minimizer: [
+        /** Minify the bundle's css */
+        new OptimizeCSSAssetsPlugin({
+          /** Default css processor is 'cssnano' */
+          cssProcessor,
+          cssProcessorOptions: {
+            core: IS_PROD,
+            discardComments: IS_PROD,
+            autoprefixer: false,
+          },
+        }),
+        /** Minify the bundle's js */
+        new UglifyJsPlugin({
+          cache: true, // Enables file caching
+          parallel: true, // Use multiple CPUs if available,
+          sourceMap: false, // Enables sourcemap
+          uglifyOptions: {
+            compress: {
+              reduce_funcs: false,
+              keep_fnames: false,
+              /** Functions that doesn't have side-effects */
+              pure_funcs: [
+                'classCallCheck',
+                '_classCallCheck',
+                '_possibleConstructorReturn',
+                'Object.freeze',
+                'invariant',
+                'warning',
+              ],
+            },
+            mangle: {
+              keep_fnames: false,
+              /** Prevent renaming of `process.env...` */
+              reserved: ['process'],
+            },
+            output: {
+              comments: false,
+            },
+          },
+        }),
+      ],
     },
   };
 };
