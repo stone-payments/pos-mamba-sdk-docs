@@ -47,9 +47,9 @@ app.use(
 );
 
 // const envPort = IS_DEV ? 3000 : process.env.PORT || 8080;
-// const host = process.env.HOST || '127.0.0.1';
 // console.log(`credentials path parsed ${JSON.stringify(credentials, null, 2)}`);
 // const secureConfig = IS_DEV ? credentials.dev : credentials.prod;
+const host = process.env.HOST || '127.0.0.1';
 
 const httpServer = http.createServer(app, host);
 // const httpsServer = https.createServer(createCredentials(secureConfig), app);
