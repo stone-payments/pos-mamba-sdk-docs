@@ -12,7 +12,7 @@ import * as sapper from '../__sapper__/server.js';
 
 // const { credentials } = serverConfig;
 
-const IS_DEV = process.env.NODE_ENV === 'development';
+console.log(process.env);
 
 dotenv.config();
 
@@ -46,13 +46,13 @@ app.use(
   }),
 );
 
-const envPort = IS_DEV ? 3000 : process.env.PORT || 8080;
-const host = process.env.HOST || '127.0.0.1';
+// const envPort = IS_DEV ? 3000 : process.env.PORT || 8080;
+// const host = process.env.HOST || '127.0.0.1';
 // console.log(`credentials path parsed ${JSON.stringify(credentials, null, 2)}`);
 // const secureConfig = IS_DEV ? credentials.dev : credentials.prod;
 
 const httpServer = http.createServer(app, host);
 // const httpsServer = https.createServer(createCredentials(secureConfig), app);
 
-httpServer.listen(envPort);
+httpServer.listen(3000);
 // httpsServer.listen(443);
