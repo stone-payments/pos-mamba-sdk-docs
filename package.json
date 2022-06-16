@@ -16,7 +16,7 @@
     "build": "cross-env NODE_ENV=production sapper build",
     "prepare:bundle": "rm -rf dist && rsync -arv static package.json package-lock.json content dist && rsync -arcv __sapper__ dist --exclude=dev && rsync -arcv mamba-sdk/packages dist/mamba-sdk --exclude=webpack --exclude=logger --exclude=cli --exclude=configs && cd dist && npm i --production",
     "export": "sapper export",
-    "start": "node __sapper__/build",
+    "start": "node __sapper__/build NODE_ENV=production",
     "preinstall": "npm run pull:sdk:submodule",
     "pull:packages": "cd scripts && npm i && npm run update",
     "pull:sdk:submodule": "git submodule update --init --recursive --remote",
