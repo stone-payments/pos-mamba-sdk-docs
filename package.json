@@ -63,7 +63,7 @@
     "dotenv": "^6.0.0",
     "dropzone": "^5.5.1",
     "encoding": "^0.1.12",
-    "express": "^4.16.3",
+    "express": "^4.19.2",
     "globby": "^8.0.1",
     "golden-fleece": "^1.0.9",
     "immer": "^8.0.1",
